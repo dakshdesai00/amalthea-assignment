@@ -52,13 +52,13 @@ const AboutAmalthea = (props) => {
   const font = new FontLoader().parse(roboto);
   const textOptions = {
     font,
-    size: 0.25,
+    size: 0.2,
     height: 0.01,
     depth: 0.000005,
   };
   return (
     <mesh
-      position={[-3.5, -1.7, -3.7]}
+      position={[-3.5, -1.85, -3.7]}
       rotation={[0, 0, 0]}
       onClick={() => {
         props.manangeScreen("about");
@@ -70,17 +70,38 @@ const AboutAmalthea = (props) => {
   );
 };
 
+const ClickToLoad = () => {
+  const font = new FontLoader().parse(roboto);
+  const textOptions = {
+    font,
+    size: 0.1,
+    height: 0.01,
+    depth: 0.000005,
+  };
+  return (
+    <mesh position={[-3.2, -1.4, -3.7]} rotation={[0, 0, 0]}>
+      <textGeometry
+        args={[
+          "Click on either Register or Amalthea to load that page",
+          textOptions,
+        ]}
+      />
+      <meshBasicMaterial color="#FFFFFF" />
+    </mesh>
+  );
+};
+
 const Register = (props) => {
   const font = new FontLoader().parse(roboto);
   const textOptions = {
     font,
-    size: 0.25,
+    size: 0.2,
     height: 0.01,
     depth: 0.000005,
   };
   return (
     <mesh
-      position={[-1, -1.7, -3.7]}
+      position={[-1, -1.85, -3.7]}
       rotation={[0, 0, 0]}
       onClick={() => {
         props.manangeScreen("register");
@@ -145,9 +166,20 @@ function App() {
           >
             <ambientLight intensity={1} />
             <directionalLight position={[0, -3, 5]} />
+            <directionalLight
+              position={[-1, -3, -3.7]}
+              color={"#04D9FF"}
+              intensity={0.2}
+            />
+            <directionalLight
+              position={[-3.5, -1.7, -3.7]}
+              color={"#FE019A"}
+              intensity={0.2}
+            />
             <color attach="background" args={["#000000"]} />
             <Model />
             <TextCountdown />
+            <ClickToLoad />
             <AboutAmalthea manangeScreen={manangeScreen} />
             <Register manangeScreen={manangeScreen} />
           </PresentationControls>
